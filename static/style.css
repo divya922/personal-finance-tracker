@@ -1,0 +1,262 @@
+:root {
+  --page: #ffe9f0;
+  --surface: #fff5f8;
+  --ink-primary: #5b2a3e;
+  --ink-secondary: #9a5a74;
+  --ink-muted: #c08ca1;
+  --gridline: #f6d6e2;
+  --border: rgba(214, 66, 110, 0.18);
+  --accent: #e4607e;
+  --accent-dark: #c9436a;
+  --accent-soft: #f7c6d9;
+  --income-color: #4fa983;
+  --expense-color: #e4607e;
+  --shadow: 0 8px 24px rgba(214, 66, 110, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #ffe9f0 0%, #fff0f5 100%);
+  color: var(--ink-primary);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--accent-dark);
+  letter-spacing: 0.2px;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+  color: var(--ink-secondary);
+  font-weight: 600;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.form-row label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  color: var(--ink-secondary);
+  gap: 4px;
+  font-weight: 500;
+}
+
+.note-label {
+  flex: 1;
+  min-width: 160px;
+}
+
+input, select, button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 9px 12px;
+  border: 1px solid var(--gridline);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink-primary);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(228, 96, 126, 0.15);
+}
+
+.form-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button#cancel-edit {
+  background: transparent;
+  color: var(--ink-secondary);
+  border: 1px solid var(--gridline);
+}
+
+button#cancel-edit:hover {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.month-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.month-filter label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  color: var(--ink-secondary);
+  gap: 4px;
+  font-weight: 500;
+}
+
+.month-filter button {
+  background: transparent;
+  color: var(--ink-secondary);
+  border: 1px solid var(--gridline);
+}
+
+.month-filter button:hover {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: linear-gradient(145deg, #fff5f8, #ffeaf1);
+}
+
+.summary-label {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-dark);
+}
+
+.summary-value.income {
+  color: var(--income-color);
+}
+
+.summary-value.expense {
+  color: var(--expense-color);
+}
+
+.chart-card canvas {
+  max-height: 320px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--gridline);
+}
+
+th {
+  color: var(--ink-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.3px;
+}
+
+td.amount {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 600;
+}
+
+td.actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+td.actions button {
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  background: transparent;
+  color: var(--ink-secondary);
+  border: 1px solid var(--gridline);
+  margin-left: 6px;
+  border-radius: 8px;
+}
+
+td.actions button:hover {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.row-income .amount {
+  color: var(--income-color);
+}
+
+.row-expense .amount {
+  color: var(--expense-color);
+}
+
+tbody tr:hover {
+  background: #fff0f5;
+}
+
+.empty-message {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}

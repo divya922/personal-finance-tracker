@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Finance Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Personal Finance Tracker</h1>
+
+    <form id="transaction-form" class="card">
+      <input type="hidden" id="transaction-id">
+      <div class="form-row">
+        <label>
+          Date
+          <input type="date" id="date" required>
+        </label>
+        <label>
+          Type
+          <select id="type">
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </label>
+        <label>
+          Category
+          <input type="text" id="category" list="category-options" required>
+          <datalist id="category-options">
+            <option value="Food">
+            <option value="Rent">
+            <option value="Transport">
+            <option value="Utilities">
+            <option value="Entertainment">
+            <option value="Shopping">
+            <option value="Health">
+            <option value="Salary">
+            <option value="Other">
+          </datalist>
+        </label>
+        <label>
+          Amount
+          <input type="number" id="amount" step="0.01" min="0" required>
+        </label>
+        <label class="note-label">
+          Note
+          <input type="text" id="note">
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" id="submit-btn">Add Transaction</button>
+        <button type="button" id="cancel-edit" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <div class="month-filter card">
+      <label>
+        Month
+        <input type="month" id="month-filter">
+      </label>
+      <button type="button" id="clear-filter">Show all</button>
+    </div>
+
+    <div class="summary">
+      <div class="card summary-card">
+        <span class="summary-label">Income</span>
+        <span class="summary-value income" id="summary-income">$0.00</span>
+      </div>
+      <div class="card summary-card">
+        <span class="summary-label">Expenses</span>
+        <span class="summary-value expense" id="summary-expenses">$0.00</span>
+      </div>
+      <div class="card summary-card">
+        <span class="summary-label">Balance</span>
+        <span class="summary-value" id="summary-balance">$0.00</span>
+      </div>
+    </div>
+
+    <div class="chart-card card">
+      <h2>Spending by Category</h2>
+      <canvas id="category-chart"></canvas>
+      <p id="chart-empty" class="empty-message" hidden>No expenses for this period.</p>
+    </div>
+
+    <div class="card">
+      <h2>Transactions</h2>
+      <table id="transactions-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Note</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="transactions-body"></tbody>
+      </table>
+      <p id="table-empty" class="empty-message" hidden>No transactions yet.</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
